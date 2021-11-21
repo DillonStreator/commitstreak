@@ -1,10 +1,16 @@
 interface ENV {
     PORT: string;
     IS_DEV: boolean;
-    GITHUB_ACCESS_TOKEN?: string;
+    GITHUB_ACCESS_TOKEN: string;
     GITHUB_GRAPHQL_API_URL: string;
+    REDIS_HOST: string;
+    REDIS_PORT: number | null;
 }
 
+interface Cacher {
+    get(key: string): Promise<string|null>
+    set(key: string, value: string): Promise
+}
 declare module GithubGraphQL {
 
     interface ContributionDay {
